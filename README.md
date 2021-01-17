@@ -1,4 +1,4 @@
-# Relay On/Off/Bling
+# BOF-Bling_On_ofF
 
 Arduino library for playing with relay, LED, and other On/OFF.
 
