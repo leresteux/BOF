@@ -11,20 +11,23 @@ void BOF::begin() {
   pinMode(_pin, OUTPUT);
   _etat = false;
   _storedTime = 0;
-  _firstTimeBling = true;
+  _isEnable=true;                 
   off();
 }
 
 void BOF::on() {
   _etat = true;
+  if (_isEnable){
   digitalWrite(_pin, LOW);
+  }
 }
 
 void BOF::off() {
   _etat = false;
+  if (_isEnable){
   digitalWrite(_pin, HIGH);
+  }
 }
-
 
 void BOF::process() {
   if (_storedTime == 0) {
@@ -61,4 +64,11 @@ void BOF::switchOnOff() {
     _storedTime = millis();
   }
 
+}
+
+void BOF::isEnable() {
+_isEnable=true;
+}
+void BOF::isDisable() {
+_isEnable=false;
 }
