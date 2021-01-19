@@ -11,8 +11,15 @@ void BOF::begin() {
   pinMode(_pin, OUTPUT);
   _etat = false;
   _storedTime = 0;
-  _isEnable=true;                 
+  _isEnable=true;
+  _BPM=1;
   off();
+}
+
+void BOF::BPM(unsigned int varBPM=1) {
+	_BPM=60000/varBPM;
+
+	
 }
 
 void BOF::on() {
@@ -30,36 +37,27 @@ void BOF::off() {
 }
 
 void BOF::process() {
-  if (_storedTime == 0) {
-_storedTime = millis();
-   // firstTimeBling(); // a voir
-  }
-  switchOnOff();
-}
-
-
-void BOF::bling(unsigned int onDuration, unsigned int offDuration) {
-  _offDuration = offDuration;
-  _onDuration = onDuration;
-}
-void BOF::firstTimeBling() {
-
+	if (_storedTime == 0) {
+		_storedTime = millis();
+	  }
+	_elapsedTime = millis()-_storedTime;
+		switchOnOff();
+	}
   
-  if (_etat) {
-    off();
-  }
-  else {
-    on();
-  }
+  
 
+void BOF::bling(float onDuration, float offDuration) {
+	_onDuration = _BPM*onDuration;
+	_offDuration = _BPM*offDuration;
 
 }
+
 void BOF::switchOnOff() {
-  if ((millis() - _storedTime) >= _offDuration && _etat == false) {
+  if (_elapsedTime >= _offDuration && _etat == false) {
     on();
     _storedTime = millis();
   }
-  else if ((millis() - _storedTime) >= _onDuration && _etat == true) {
+  else if (_elapsedTime >= _onDuration && _etat == true) {
     off();
     _storedTime = millis();
   }
@@ -71,8 +69,8 @@ void BOF::isEnable() {
 }
 
 void BOF::isDisable() {
-	off();
   _isEnable=false;
+  digitalWrite(_pin, HIGH);
 }
 
 void BOF::isPause() {
