@@ -16,6 +16,8 @@ bling	KEYWORD2
 on	KEYWORD2
 off	KEYWORD2
 process KEYWORD2
+isEnable KEYWORD2
+isDisable KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
