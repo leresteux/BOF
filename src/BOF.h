@@ -12,9 +12,10 @@ class BOF
 	 bool _etat;
 	 unsigned long _storedTime;
 	 void switchOnOff();
-	 void firstTimeBling();
+	 void firstTimeBling(); // a disparaitre ? 
 	 unsigned int _onDuration;
 	 unsigned int _offDuration;
+		bool _isEnable;
 
  public:
 	 BOF();
