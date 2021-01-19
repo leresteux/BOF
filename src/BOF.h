@@ -11,7 +11,6 @@ class BOF
 	 byte _pin;
 	 bool _etat;
 	 unsigned long _storedTime;
-	 bool _firstTimeBling;
 	 void switchOnOff();
 	 void firstTimeBling();
 	 unsigned int _onDuration;
