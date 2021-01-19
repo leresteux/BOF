@@ -27,8 +27,9 @@ void BOF::off() {
 
 
 void BOF::process() {
-  if (_firstTimeBling == true) {
-    firstTimeBling();
+  if (_storedTime == 0) {
+_storedTime = millis();
+   // firstTimeBling(); // a voir
   }
   switchOnOff();
 }
@@ -40,9 +41,7 @@ void BOF::bling(unsigned int onDuration, unsigned int offDuration) {
 }
 void BOF::firstTimeBling() {
 
-  _storedTime = millis();
-  _firstTimeBling = false;
-
+  
   if (_etat) {
     off();
   }
