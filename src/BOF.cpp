@@ -71,13 +71,14 @@ void BOF::isEnable() {
 }
 
 void BOF::isDisable() {
+	off();
   _isEnable=false;
 }
 
 void BOF::isPause() {
   if (_isEnable){
-    _isEnable=false;
+    isEnable();
   }else{
-    _isEnable=true;
+    isDisable();
   }
 }
