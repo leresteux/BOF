@@ -77,8 +77,8 @@ void BOF::isDisable() {
 
 void BOF::isPause() {
   if (_isEnable){
-    isEnable();
-  }else{
     isDisable();
+  }else{
+    isEnable();
   }
 }
