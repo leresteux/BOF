@@ -11,22 +11,25 @@ class BOF
 	 byte _pin;
 	 bool _etat;
 	 unsigned long _storedTime;
+	 float _elapsedTime;
+	 unsigned int _BPM;
+	 float _onDuration;
+	 float _offDuration;
+	 bool _isEnable;
 	 void switchOnOff();
-	 void firstTimeBling(); // a disparaitre ? 
-	 unsigned int _onDuration;
-	 unsigned int _offDuration;
-	bool _isEnable;
 
  public:
 	 BOF();
 	 BOF(byte R_pin);
 
 	 void begin();
+	 void BPM(unsigned int varBPM=1);
+	 
 	 void on();
 	 void off();
 	 
-	 void bling(unsigned int onDuration, unsigned int offDuration);
-
+	 void bling(float onDuration, float offDuration);
+	 
 	 void process();
 	 void isDisable();
 	 void isEnable();
