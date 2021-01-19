@@ -15,7 +15,7 @@ class BOF
 	 void firstTimeBling(); // a disparaitre ? 
 	 unsigned int _onDuration;
 	 unsigned int _offDuration;
-		bool _isEnable;
+	bool _isEnable;
 
  public:
 	 BOF();
@@ -27,7 +27,10 @@ class BOF
 	 
 	 void bling(unsigned int onDuration, unsigned int offDuration);
 
-	 void process(); 
+	 void process();
+	 void isDisable();
+	 void isEnable();
+	 void isPause();
 
 	 
 };
