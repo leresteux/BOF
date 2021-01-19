@@ -67,8 +67,17 @@ void BOF::switchOnOff() {
 }
 
 void BOF::isEnable() {
-_isEnable=true;
+  _isEnable=true;
 }
+
 void BOF::isDisable() {
-_isEnable=false;
+  _isEnable=false;
+}
+
+void BOF::isPause() {
+  if (_isEnable){
+    _isEnable=false;
+  }else{
+    _isEnable=true;
+  }
 }
