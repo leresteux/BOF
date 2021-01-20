@@ -8,14 +8,13 @@ BOF (Bling_On_ofF) is an small Arduino library for relay, LED, and other On/OFF 
 Void for the moment :
 - on() to turn on the relay 
 - off() to turn off
-- bling(float,float)
-- fade(float) 
+- bling(float,float) 
+- fade(float) for a fadein the float must be >1 ; for fadeout this float must be between 1 and 0 
 - isEnable()
 - isDisable()
 - isPause()
-- BPM()
-and
-- process()
+- BPM() 
+- process() must be call all time
 
 ## Examples
 See examples files
