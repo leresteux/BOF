@@ -53,8 +53,10 @@ void BOF::bling(float onDuration, float offDuration) {
 }
 
 void BOF::fade(float varFade) {
-		_fadeIsRunning=true;
+	if (_fadeIsRunning==false){
 		_oriOffDuration = _offDuration;
+		}
+		_fadeIsRunning=true;
 		_varFade=varFade;
 		if (varFade > 1 ){
 			_offDuration=_offDuration/10;
