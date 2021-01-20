@@ -26,6 +26,7 @@ void setup() {
   delay(10);
   monrelais1.isDisable();
   monrelais2.isDisable();
+  monrelais3.fade(1.2);
 }
 
 void loop() {
@@ -50,6 +51,16 @@ void loop() {
     }
     if (incoming.indexOf("3") >= 0) {
       monrelais3.isPause();
+      incoming = "";
+    }
+    
+    if (incoming.indexOf("5") >= 0) {
+      monrelais3.fade(0.8);
+      incoming = "";
+    }
+    
+    if (incoming.indexOf("4") >= 0) {
+      monrelais3.fade(1.2);
       incoming = "";
     }
   }
