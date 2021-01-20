@@ -52,15 +52,30 @@ void BOF::bling(float onDuration, float offDuration) {
 
 }
 
+void BOF::fade(float varFade) {
+		_fadeIsRunning=true;
+		_oriOffDuration = _offDuration;
+		_varFade=varFade;
+		if (varFade > 1 ){
+			_offDuration=_offDuration/10;
+		}
+}		
+
 void BOF::switchOnOff() {
   if (_elapsedTime >= _offDuration && _etat == false) {
-    on();
-    _storedTime = millis();
-  }
-  else if (_elapsedTime >= _onDuration && _etat == true) {
-    off();
-    _storedTime = millis();
-  }
+		on();
+		_storedTime = millis();
+  }else if (_elapsedTime >= _onDuration && _etat == true) {
+			if (_fadeIsRunning){
+			_offDuration = _varFade*_offDuration;
+				if (_offDuration <=1 || _offDuration>=_oriOffDuration ){
+					_fadeIsRunning=false;
+					_offDuration =_oriOffDuration;
+				}
+			}
+			off();
+			_storedTime = millis();
+	}
 
 }
 
@@ -80,3 +95,15 @@ void BOF::isPause() {
     isEnable();
   }
 }
+/*
+void BOF::firstTimeBling() {
+
+  
+  if (_etat) {
+    off();
+  }
+  else {
+    on();
+  }
+}
+*/
