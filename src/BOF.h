@@ -17,6 +17,9 @@ class BOF
 	 float _offDuration;
 	 bool _isEnable;
 	 void switchOnOff();
+	 float _oriOffDuration;
+	 bool _fadeIsRunning;
+	 float _varFade;
 
  public:
 	 BOF();
@@ -29,7 +32,7 @@ class BOF
 	 void off();
 	 
 	 void bling(float onDuration, float offDuration);
-	 
+	 void fade(float varFade);
 	 void process();
 	 void isDisable();
 	 void isEnable();
