@@ -9,7 +9,8 @@ unsigned int BPM = 240 ;
 
 
 void setup() {
-  Serial.begin(115200); // opens serial port, sets data rate to 9600 bps
+  Serial.begin(115200);
+  Serial.setTimeout(10);
   monrelais3.begin();
   monrelais2.begin();
   monrelais1.begin();
