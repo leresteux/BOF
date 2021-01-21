@@ -9,25 +9,16 @@ unsigned int BPM = 240 ;
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200); // opens serial port, sets data rate to 9600 bps
   Serial.setTimeout(10);
   monrelais3.begin();
   monrelais2.begin();
   monrelais1.begin();
-
-  monrelais1.BPM(BPM);
-  monrelais2.BPM(BPM);
-  monrelais3.BPM(BPM);
-
-
-  //def : monrelais.bling(unsigned int onDuration, unsigned int offDuration)
-  monrelais2.bling(1,3);
-  monrelais3.bling(1, 1);
-  monrelais1.bling(2, 2);
+  boot();
   delay(10);
   monrelais1.isDisable();
   monrelais2.isDisable();
-  monrelais3.fade(1.2);
+  monrelais3.isDisable();
 }
 
 void loop() {
@@ -64,5 +55,25 @@ void loop() {
       monrelais3.fade(1.2);
       incoming = "";
     }
+    if (incoming.indexOf("+") >= 0) {
+      BPM=BPM+10;
+      boot();
+      incoming = "";
+    }
+    
+    if (incoming.indexOf("-") >= 0) {
+      BPM=BPM-10;
+      boot();
+      incoming = "";
+    }
   }
 }
+void boot(){
+      monrelais3.BPM(BPM);
+      monrelais2.BPM(BPM);
+      monrelais1.BPM(BPM);
+      monrelais2.bling(1,3);
+      monrelais3.bling(1, 1);
+      monrelais1.bling(2, 2);
+}
+
