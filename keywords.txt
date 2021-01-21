@@ -5,6 +5,7 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
+
 BOF	KEYWORD1
 
 #######################################
@@ -15,11 +16,12 @@ begin	KEYWORD2
 bling	KEYWORD2
 on	KEYWORD2
 off	KEYWORD2
-process KEYWORD2
-isEnable KEYWORD2
-isDisable KEYWORD2
-isPause KEYWORD2
-BPM KEYWORD2
+process	KEYWORD2
+isEnable	KEYWORD2
+isDisable	KEYWORD2
+isPause	KEYWORD2
+BPM	KEYWORD2
+fade	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
