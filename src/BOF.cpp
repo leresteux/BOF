@@ -17,9 +17,7 @@ void BOF::begin() {
 }
 
 void BOF::BPM(unsigned int varBPM=1) {
-	_BPM=60000/varBPM;
-
-	
+	_BPM=60000/varBPM;	
 }
 
 void BOF::on() {
@@ -44,23 +42,21 @@ void BOF::process() {
 		switchOnOff();
 	}
   
-  
-
 void BOF::bling(float onDuration, float offDuration) {
 	_onDuration = _BPM*onDuration;
 	_offDuration = _BPM*offDuration;
-
+	_oriOffDuration = _offDuration;
 }
 
 void BOF::fade(float varFade) {
 	if (_fadeIsRunning==false){
-		_oriOffDuration = _offDuration;
-		}
 		_fadeIsRunning=true;
-		_varFade=varFade;
-		if (varFade > 1 ){
-			_offDuration=_offDuration/10;
-		}
+		_isEnable=true;
+	}
+	_varFade=varFade;
+	if (varFade > 1 ){
+		_offDuration=_offDuration/10;
+	}
 }		
 
 void BOF::switchOnOff() {
@@ -69,7 +65,7 @@ void BOF::switchOnOff() {
 		_storedTime = millis();
   }else if (_elapsedTime >= _onDuration && _etat == true) {
 			if (_fadeIsRunning){
-			_offDuration = _varFade*_offDuration;
+				_offDuration = _varFade*_offDuration;
 				if (_offDuration <=1 || _offDuration>=_oriOffDuration ){
 					_fadeIsRunning=false;
 					_offDuration =_oriOffDuration;
@@ -97,15 +93,3 @@ void BOF::isPause() {
     isEnable();
   }
 }
-/*
-void BOF::firstTimeBling() {
-
-  
-  if (_etat) {
-    off();
-  }
-  else {
-    on();
-  }
-}
-*/
