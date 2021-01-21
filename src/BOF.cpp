@@ -11,7 +11,7 @@ void BOF::begin() {
   pinMode(_pin, OUTPUT);
   _isActivated = false;
   _storedTime = 0;
-  _isEnable=true;
+  _isEnabled=true;
   _BPM=1;
   off();
 }
@@ -22,14 +22,14 @@ void BOF::BPM(unsigned int varBPM=1) {
 
 void BOF::on() {
   _isActivated = true;
-  if (_isEnable){
+  if (_isEnabled){
   digitalWrite(_pin, LOW);
   }
 }
 
 void BOF::off() {
   _isActivated = false;
-  if (_isEnable){
+  if (_isEnabled){
   digitalWrite(_pin, HIGH);
   }
 }
@@ -51,7 +51,7 @@ void BOF::bling(float onDuration, float offDuration) {
 void BOF::fade(float varFade) {
 	if (_fadeIsRunning==false){
 		_fadeIsRunning=true;
-		_isEnable=true;
+		_isEnabled=true;
 	}
 	_varFade=varFade;
 	if (varFade > 1 ){
@@ -78,16 +78,16 @@ void BOF::switchOnOff() {
 }
 
 void BOF::isEnable() {
-  _isEnable=true;
+  _isEnabled=true;
 }
 
 void BOF::isDisable() {
-  _isEnable=false;
+  _isEnabled=false;
   digitalWrite(_pin, HIGH);
 }
 
 void BOF::isPause() {
-  if (_isEnable){
+  if (_isEnabled){
     isDisable();
   }else{
     isEnable();
