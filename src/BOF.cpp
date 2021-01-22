@@ -12,25 +12,25 @@ BOF::BOF(byte R_pin) {
 // regle la pin attribué au relais et les varaibles au demarrage. A mettre dans Set up 
 void BOF::begin() {
   pinMode(_pin, OUTPUT);
-  _etat = false;
+  _isActivated = false;
   _storedTime = 0;
-  _isEnable=true;
+  _isEnabled=true;
   _BPM=1;
   off();
 }
 /////
 // "allume "le relais
 void BOF::on() {
-  _etat = true;
-  if (_isEnable){
+  _isActivated = true;
+  if (_isEnabled){
   digitalWrite(_pin, LOW);
   }
 }
 /////
 //"eteind" le relais
 void BOF::off() {
-  _etat = false;
-  if (_isEnable){
+  _isActivated = false;
+  if (_isEnabled){
   digitalWrite(_pin, HIGH);
   }
 }
@@ -86,7 +86,7 @@ void BOF::BPM(unsigned int varBPM=1) {
 void BOF::fade(float varFade) {
 	if (_fadeIsRunning==false){
 		_fadeIsRunning=true;
-		_isEnable=true;
+		_isEnabled=true;
 	}
 	_varFade=varFade;
 	if (varFade > 1 ){
@@ -100,10 +100,10 @@ void BOF::fade(float varFade) {
 // calcule s'il doit allumer ou eteindre le relais
 // voir void process
 void BOF::switchOnOff() {
-  if (_elapsedTime >= _offDuration && _etat == false) {
+  if (_elapsedTime >= _offDuration && _isActivated == false) {
 		on();
 		_storedTime = millis();
-  }else if (_elapsedTime >= _onDuration && _etat == true) {
+  }else if (_elapsedTime >= _onDuration && _isActivated == true) {
 			if (_fadeIsRunning){
 				_offDuration = _varFade*_offDuration;
 				if (_offDuration <=1 || _offDuration>=_oriOffDuration ){
@@ -116,3 +116,4 @@ void BOF::switchOnOff() {
 	}
 
 }
+

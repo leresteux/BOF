@@ -9,7 +9,7 @@ class BOF
 {
  protected:
 	 byte _pin;
-	 bool _etat;
+	 bool _isActivated;
 	 unsigned long _storedTime;
 	 float _elapsedTime;
 	 unsigned int _BPM;
