@@ -45,22 +45,22 @@ void BOF::process() {
 	}
 /////
 // active le relais (par défaut)
-void BOF::isEnable() {
-  _isEnable=true;
+void BOF::isEnabled() {
+  _isEnabled=true;
 }
 /////
 //desactive le relais
 void BOF::isDisable() {
-  _isEnable=false;
+  _isEnabled=false;
   digitalWrite(_pin, HIGH);
 }
 /////
 // active ou desactive le relais en fonction de l'etat 
 void BOF::isPause() {
-  if (_isEnable){
+  if (_isEnabled){
     isDisable();
   }else{
-    isEnable();
+    isEnabled();
   }
 }
 /////
