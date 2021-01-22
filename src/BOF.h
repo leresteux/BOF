@@ -15,7 +15,7 @@ class BOF
 	 unsigned int _BPM;
 	 float _onDuration;
 	 float _offDuration;
-	 bool _isEnable;
+	 bool _isEnabled;
 	 void switchOnOff();
 	 float _oriOffDuration;
 	 bool _fadeIsRunning;
@@ -35,7 +35,7 @@ class BOF
 	 void fade(float varFade);
 	 void process();
 	 void isDisable();
-	 void isEnable();
+	 void isEnabled();
 	 void isPause();
 
 	 
