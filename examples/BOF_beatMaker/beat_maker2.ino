@@ -2,6 +2,7 @@
 // Enter :
 // a number (ex : "1") to play or pause a relay
 // "BMP" to change BPM
+// or use + and - to up or down BPM by 10
 // "FADEIN" to fade-in a relay
 // "FADEOUT" to fade-out a relay
 /////
@@ -65,7 +66,7 @@ void serialForBMP() {
     BPM = BPM - 10;
     boot();
   }
-  if (incoming.indexOf("BMP") >= 0 ) {
+  if (incoming.indexOf("BPM") >= 0 ) {
     Serial.print("CHANGE BPM : ");
     Serial.println("(by int number)");
     incoming = "";
@@ -128,6 +129,9 @@ void serialForFade() {
           default:
             break;
         }
+        
+        Serial.print ("FADE-IN : ");
+        Serial.println (R);
         readOK = true;
         incoming = "";
       }
@@ -160,7 +164,10 @@ void serialForFade() {
           */
           default:
             break;
+            
         }
+        Serial.print ("FADE-IN : ");
+        Serial.println (R);
         readOK = true;
         incoming = "";
       }
