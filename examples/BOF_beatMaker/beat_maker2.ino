@@ -52,9 +52,9 @@ void boot() {
   monrelais3.BPM(BPM);
   monrelais2.BPM(BPM);
   monrelais1.BPM(BPM);
-  monrelais2.bling(1, 3);
-  monrelais3.bling(1, 1);
-  monrelais1.bling(2, 2);
+  monrelais2.bling(0,1, 3);
+  monrelais3.bling(1, 1,2);
+  monrelais1.bling(1, 1);
 }
 
 void serialForBMP() {
