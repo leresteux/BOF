@@ -99,7 +99,7 @@ void BOF::fade(float varFade) {
 	}
 	_varFade=varFade;
 	if (varFade > 1 ){
-		_offDurationAfter=_offDurationAfter/10;
+		_offDurationBefore=_offDurationBefore/10;
 	}
 }		
 
