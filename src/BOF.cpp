@@ -16,6 +16,8 @@ void BOF::begin() {
   _storedTime = 0;
   _isEnabled=true;
   _BPM=1;
+  _blingState=0;
+  		_storedTime = millis();
   off();
 }
 /////
@@ -40,8 +42,9 @@ void BOF::process() {
 	if (_storedTime == 0) {
 		_storedTime = millis();
 	  }
+	  
 	_elapsedTime = millis()-_storedTime;
-		switchOnOff();
+	switchOnOff();
 	}
 /////
 // active le relais (par défaut)
@@ -65,15 +68,21 @@ void BOF::isPause() {
 }
 /////
 // fait passer le relais d'un etat on à off en boucle ( si appeler par void process)
-// float onDuration est indiqué en milliseconde et correspond à la durée en possition on du relais
-// idem pour float offDuration
-//les var onDuration et offDuration peuvent être introduites en Beat Par Minute si la fonction BPM a ete appeler au par avant 
+// peut etre ecrit : bling(offdurée,ondurée) ou bling(offdurée,ondurée,offdurée)
+// float onDuration est indiqué en milliseconde et correspond à la durée en position on du relais
+// idem pour float offDurationBefore et offDurationAfter 
+//les variables peuvent être introduites en Beat Par Minute si la fonction BPM a ete appeler au par avant 
 // voir exemple beat_maker2
-void BOF::bling(float onDuration, float offDuration) {
+void BOF::bling(float offDurationBefore, float onDuration, float offDurationAfter=0) {
 	_onDuration = _BPM*onDuration;
-	_offDuration = _BPM*offDuration;
-	_oriOffDuration = _offDuration;
-}
+
+	_offDurationBefore = _BPM*offDurationBefore;
+	_oriOffDurationBefore = _offDurationBefore;
+	
+	_offDurationAfter = _BPM*offDurationAfter;
+	
+	
+	}
 /////
 // permet de regler void bling en BPM
 void BOF::BPM(unsigned int varBPM=1) {
@@ -90,7 +99,7 @@ void BOF::fade(float varFade) {
 	}
 	_varFade=varFade;
 	if (varFade > 1 ){
-		_offDuration=_offDuration/10;
+		_offDurationAfter=_offDurationAfter/10;
 	}
 }		
 
@@ -100,20 +109,45 @@ void BOF::fade(float varFade) {
 // calcule s'il doit allumer ou eteindre le relais
 // voir void process
 void BOF::switchOnOff() {
-  if (_elapsedTime >= _offDuration && _isActivated == false) {
-		on();
-		_storedTime = millis();
-  }else if (_elapsedTime >= _onDuration && _isActivated == true) {
-			if (_fadeIsRunning){
-				_offDuration = _varFade*_offDuration;
-				if (_offDuration <=1 || _offDuration>=_oriOffDuration ){
-					_fadeIsRunning=false;
-					_offDuration =_oriOffDuration;
-				}
+
+	switch (_blingState) {
+		// offBefore est en cours 
+		case 0:
+				if (_elapsedTime >= _offDurationBefore){
+				on();
+				_storedTime = millis();
+				_blingState = 1; 
+
 			}
+			break;
+		//on est en cours
+		case 1:
+		
+			if (_elapsedTime >= _onDuration && _isActivated == true) {
+			
+				if (_fadeIsRunning){
+					_offDurationBefore = _varFade*_offDurationBefore;
+					_blingState = 0;
+					if (_offDurationBefore <=1 || _offDurationBefore>=_oriOffDurationBefore ){
+						_fadeIsRunning=false;
+						_offDurationBefore =_oriOffDurationBefore;
+					}
+				}else{
+					_blingState = 2;
+					}
+				off();
+				_storedTime = millis();
+			
+			}
+			break;
+		//offAfter est en cours
+		case 2:
+		
+		if (_elapsedTime >= _offDurationAfter) {
 			off();
 			_storedTime = millis();
+			_blingState = 0;
+		}
+		break;
 	}
-
 }
-
