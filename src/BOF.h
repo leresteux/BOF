@@ -11,15 +11,17 @@ class BOF
 	 byte _pin;
 	 bool _isActivated;
 	 unsigned long _storedTime;
-	 float _elapsedTime;
+	 unsigned long _elapsedTime;
 	 unsigned int _BPM;
 	 float _onDuration;
-	 float _offDuration;
+	 float _offDurationAfter;
+	 float _offDurationBefore;
 	 bool _isEnabled;
 	 void switchOnOff();
-	 float _oriOffDuration;
+	 float _oriOffDurationBefore;
 	 bool _fadeIsRunning;
 	 float _varFade;
+	 byte _blingState;
 
  public:
 	 BOF();
@@ -31,7 +33,7 @@ class BOF
 	 void on();
 	 void off();
 	 
-	 void bling(float onDuration, float offDuration);
+	 void bling(float offDurationBefore, float onDuration, float offDurationAfter=0);
 	 void fade(float varFade);
 	 void process();
 	 void isDisable();
