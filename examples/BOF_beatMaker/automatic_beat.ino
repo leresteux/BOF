@@ -1,4 +1,5 @@
 /////
+// must use with Chrono.h library
 // Have fun !
 // Ju'
 ////
@@ -55,50 +56,48 @@ void loop() {
   allProcess();
 
 
-  if (monchrono.hasPassed(10000) && moment == 0) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(10000) && moment == 0) { 
     monchrono.restart();
     monrelais2.isEnabled();
     monrelais2.bling(1, 1, 2);
     moment++;
   };
-  if (monchrono.hasPassed(20000) && moment == 1) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(20000) && moment == 1) { 
     monchrono.restart();
     monrelais3.isEnabled();
     monrelais3.bling(3, 1, 0);
     moment++;
   };
 
-  if (monchrono.hasPassed(15000) && moment == 2) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(15000) && moment == 2) { 
     monchrono.restart();
     monrelais4.isEnabled();
     monrelais4.bling(7, 1, 0);
     moment++;
   };
-  if (monchrono.hasPassed(20000) && moment == 3) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(20000) && moment == 3) { 
     monchrono.restart();
-    //monrelais1.isPause();
-    //monrelais2.isPause();
     monrelais3.isPause();
     moment++;
   };
-  if (monchrono.hasPassed(10000) && moment == 4) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(10000) && moment == 4) { 
     monchrono.restart();
     monrelais1.isPause();
     moment++;
   };
 
-  if (monchrono.hasPassed(10000) && moment == 5) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(10000) && moment == 5) { 
     monchrono.restart();
     monrelais1.isPause();
     moment++;
   };
 
-  if (monchrono.hasPassed(10000) && moment == 6) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(10000) && moment == 6) { 
     monchrono.restart();
     monrelais2.isPause();
     moment++;
   };
-  if (monchrono.hasPassed(30000) && moment == 7) { // returns true if it passed 1000 ms since it was started
+  if (monchrono.hasPassed(30000) && moment == 7) { 
     monchrono.restart();
     monrelais2.isDisable();
     monrelais3.isDisable();
