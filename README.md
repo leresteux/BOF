@@ -18,6 +18,9 @@ Void for the moment :
 
 ## Examples
 See examples files
+and/or this video :
+
 [![BOF in action #1](https://i.ytimg.com/vi/xCYlpEabitc/mqdefault.jpg)](https://www.youtube.com/embed/xCYlpEabitc)
+
 ## Copyright
 Read license.txt
