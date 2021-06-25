@@ -17,7 +17,9 @@ void BOF::begin() {
   _isEnabled=true;
   _BPM=1;
   _blingState=0;
-  		_storedTime = millis();
+_modeBling=false;	
+  _storedTime = millis();
+
   off();
 }
 /////
@@ -44,7 +46,7 @@ void BOF::process() {
 	  }
 	  
 	_elapsedTime = millis()-_storedTime;
-	if (modebling==true){
+	if (_modeBling==true){
 		switchOnOff();
 			    }
 	}
@@ -69,7 +71,7 @@ void BOF::isPause() {
   }
 }
 void BOF::blingOff() {
-	modebling=false;
+	_modeBling=false;
   }
 }
 
