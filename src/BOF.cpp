@@ -104,6 +104,7 @@ void BOF::BPM(unsigned int varBPM=1) {
 // fadein si la valeur de varFade est comprise entre 1 et 0 (idéal etant 0.8 par exemple) 
 //fadein si la valeur de varFade est > 1 (idéal etant 1.2 par exemple)
 void BOF::fade(float varFade) {
+_modeBling=true;
 	if (_fadeIsRunning==false){
 		_fadeIsRunning=true;
 		_isEnabled=true;
@@ -163,7 +164,10 @@ void BOF::switchOnOff() {
 		case 2:
 		
 		if (_elapsedTime >= _offDurationAfter) {
-			off();
+			_isActivated = false;
+  				if (_isEnabled){
+  					digitalWrite(_pin, LOW);
+				}
 			_storedTime = millis();
 			_blingState = 0;
 		}
