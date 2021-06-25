@@ -23,7 +23,7 @@ void BOF::begin() {
 /////
 // "allume "le relais
 void BOF::on() {
-	_modeBling=false;
+
   _isActivated = true;
   if (_isEnabled){
   digitalWrite(_pin, HIGH);
@@ -32,7 +32,6 @@ void BOF::on() {
 /////
 //"eteind" le relais
 void BOF::off() {
-	_modeBling=false;
   _isActivated = false;
   if (_isEnabled){
   digitalWrite(_pin, LOW);
@@ -51,18 +50,18 @@ void BOF::process() {
 			  
 	}
 /////
-// active le relais (par défaut)
+// active le bling relais (par défaut)
 void BOF::isEnabled() {
   _isEnabled=true;
 }
 /////
-//desactive le relais
+//desactive le bling relais
 void BOF::isDisable() {
   _isEnabled=false;
   digitalWrite(_pin, LOW);
 }
 /////
-// active ou desactive le relais en fonction de l'etat 
+// active ou desactive le bling relais en fonction de l'etat 
 void BOF::isPause() {
   if (_isEnabled){
     isDisable();
@@ -128,7 +127,7 @@ void BOF::switchOnOff() {
 				if (_elapsedTime >= _offDurationBefore ){
 				//on
 					_isActivated = true;
-  					if (_isEnabled && _modeBling){
+  					if (_isEnabled && _modeBling ){
   					digitalWrite(_pin, HIGH);
 				}
 				_storedTime = millis();
@@ -153,7 +152,7 @@ void BOF::switchOnOff() {
 					}
 				//off
 				 _isActivated = false;
-  				if (_isEnabled && _modeBling){
+  				if (_isEnabled && _modeBling ){
   					digitalWrite(_pin, LOW);
 				}
 				_storedTime = millis();
@@ -165,7 +164,7 @@ void BOF::switchOnOff() {
 		
 		if (_elapsedTime >= _offDurationAfter ) {
 			_isActivated = false;
-  				if (_isEnabled && _modeBling){
+  				if (_isEnabled && _modeBling ){
   					digitalWrite(_pin, LOW);
 				}
 			_storedTime = millis();
