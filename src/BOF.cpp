@@ -19,7 +19,6 @@ void BOF::begin() {
   _blingState=0;
 _modeBling=false;	
   _storedTime = millis();
-
   off();
 }
 /////
@@ -28,7 +27,7 @@ void BOF::on() {
 	_modeBling=false;
   _isActivated = true;
   if (_isEnabled){
-  digitalWrite(_pin, HiGH);
+  digitalWrite(_pin, HIGH);
   }
 }
 /////
@@ -75,7 +74,7 @@ void BOF::isPause() {
 void BOF::blingOff() {
 	_modeBling=false;
   }
-}
+
 
 /////
 // fait passer le relais d'un etat on à off en boucle ( si appeler par void process)
@@ -85,7 +84,7 @@ void BOF::blingOff() {
 //les variables peuvent être introduites en Beat Par Minute si la fonction BPM a ete appeler au par avant 
 // voir exemple beat_maker2
 void BOF::bling(float offDurationBefore, float onDuration, float offDurationAfter=0) {
-	if(modebling==false){modebling=true};
+	if(_modeBling==false){_modeBling=true;};
 	_onDuration = _BPM*onDuration;
 
 	_offDurationBefore = _BPM*offDurationBefore;
@@ -129,7 +128,8 @@ void BOF::switchOnOff() {
 				//on
 					 _isActivated = true;
   if (_isEnabled){
-  digitalWrite(_pin, HiGH);
+  digitalWrite(_pin, HIGH);
+}
 				_storedTime = millis();
 				_blingState = 1; 
 
@@ -154,6 +154,7 @@ void BOF::switchOnOff() {
 				  _isActivated = false;
   if (_isEnabled){
   digitalWrite(_pin, LOW);
+}
 				_storedTime = millis();
 			
 			}
