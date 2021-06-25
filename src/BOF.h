@@ -22,6 +22,8 @@ class BOF
 	 bool _fadeIsRunning;
 	 float _varFade;
 	 byte _blingState;
+	bool _modebling;
+	
 
  public:
 	 BOF();
@@ -34,9 +36,11 @@ class BOF
 	 void off();
 	 
 	 void bling(float offDurationBefore, float onDuration, float offDurationAfter=0);
-	 void fade(float varFade);
+	void blingOff();
+	void fade(float varFade);
 	 void process();
-	 void isDisable();
+	 
+	void isDisable();
 	 void isEnabled();
 	 void isPause();
 
