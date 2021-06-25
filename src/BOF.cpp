@@ -17,7 +17,6 @@ void BOF::begin() {
   _isEnabled=true;
   _BPM=1;
   _blingState=0;
-_modeBling=false;	
   _storedTime = millis();
   off();
 }
@@ -84,7 +83,7 @@ void BOF::blingOff() {
 //les variables peuvent être introduites en Beat Par Minute si la fonction BPM a ete appeler au par avant 
 // voir exemple beat_maker2
 void BOF::bling(float offDurationBefore, float onDuration, float offDurationAfter=0) {
-	if(_modeBling==false){_modeBling=true;};
+_modeBling=true;
 	_onDuration = _BPM*onDuration;
 
 	_offDurationBefore = _BPM*offDurationBefore;
