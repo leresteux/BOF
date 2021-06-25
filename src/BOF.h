@@ -22,7 +22,7 @@ class BOF
 	 bool _fadeIsRunning;
 	 float _varFade;
 	 byte _blingState;
-	bool _modebling;
+	bool _modeBling;
 	
 
  public:
