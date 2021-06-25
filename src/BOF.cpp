@@ -25,7 +25,7 @@ void BOF::begin() {
 void BOF::on() {
   _isActivated = true;
   if (_isEnabled){
-  digitalWrite(_pin, LOW);
+  digitalWrite(_pin, HiGH);
   }
 }
 /////
@@ -33,7 +33,7 @@ void BOF::on() {
 void BOF::off() {
   _isActivated = false;
   if (_isEnabled){
-  digitalWrite(_pin, HIGH);
+  digitalWrite(_pin, LOW);
   }
 }
 /////
@@ -44,7 +44,9 @@ void BOF::process() {
 	  }
 	  
 	_elapsedTime = millis()-_storedTime;
-	switchOnOff();
+	if (modebling==true){
+		switchOnOff();
+			    }
 	}
 /////
 // active le relais (par défaut)
@@ -55,7 +57,7 @@ void BOF::isEnabled() {
 //desactive le relais
 void BOF::isDisable() {
   _isEnabled=false;
-  digitalWrite(_pin, HIGH);
+  digitalWrite(_pin, LOW);
 }
 /////
 // active ou desactive le relais en fonction de l'etat 
@@ -66,6 +68,11 @@ void BOF::isPause() {
     isEnabled();
   }
 }
+void BOF::blingOff() {
+	modebling=false;
+  }
+}
+
 /////
 // fait passer le relais d'un etat on à off en boucle ( si appeler par void process)
 // peut etre ecrit : bling(offdurée,ondurée) ou bling(offdurée,ondurée,offdurée)
@@ -74,6 +81,7 @@ void BOF::isPause() {
 //les variables peuvent être introduites en Beat Par Minute si la fonction BPM a ete appeler au par avant 
 // voir exemple beat_maker2
 void BOF::bling(float offDurationBefore, float onDuration, float offDurationAfter=0) {
+	if(modebling==false){modebling=true};
 	_onDuration = _BPM*onDuration;
 
 	_offDurationBefore = _BPM*offDurationBefore;
