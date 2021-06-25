@@ -6,6 +6,7 @@ Arduino library for playing with relay, LED, and other On/OFF.
 BOF (Bling_On_ofF) is an small Arduino library for relay, LED, and other On/OFF thing. 
 
 Void for the moment :
+- begin(); permet de configurer la pin qui accueille le relais (ou led et autres trucs) 
 - on(); to turn on the relay (reprend le bling s'il y a);
 - off(); to turn off (concerve le rythme bling);
 - bling(float offduration,float onduration,float offduration) ; variables en sec si BMP activé sinon en ms) ; rythme toujours en fond de tache même si desactivé par blingOff() voir ci-dessous)
